@@ -7,14 +7,14 @@ export default class NegociacaoController {
     constructor() {
         this.negociacoes = new Negociacoes();
         this.negociacoesView = new NegociacoesView('#negociacoesView');
-        this.mensagemView = new MensagemView('#mensagemView');
+        this.mensagemView = new MensagemView('#mensagemView', true);
         this.inputData = document.querySelector('#data');
         this.inputQuantidade = document.querySelector('#quantidade');
         this.inputValor = document.querySelector('#valor');
         this.negociacoesView.update(this.negociacoes);
     }
     adiciona() {
-        const negociacao = this.criaNegociacao();
+        const negociacao = Negociacao.criaDe(this.inputData.value, this.inputQuantidade.value, this.inputValor.value);
         if (!this.isDiaUtil(negociacao.data)) {
             this.mensagemView.update("Apenas negociações em dias úteis serão aceitas.");
             return;
@@ -22,11 +22,6 @@ export default class NegociacaoController {
         this.negociacoes.adiciona(negociacao);
         this.atualizaView();
         this.limparFormulario();
-    }
-    criaNegociacao() {
-        const exp = /-/g;
-        const date = new Date(this.inputData.value.replace(exp, ','));
-        return new Negociacao(date, parseInt(this.inputQuantidade.value), parseFloat(this.inputValor.value));
     }
     limparFormulario() {
         this.inputData.value = '';
@@ -39,6 +34,7 @@ export default class NegociacaoController {
         this.mensagemView.update("Negociação adicionada com sucesso!");
     }
     isDiaUtil(data) {
-        return data.getDay() > DiasDaSemana.DOMINGO && data.getDay() < DiasDaSemana.SABADO;
+        return data.getDay() > DiasDaSemana.DOMINGO
+            && data.getDay() < DiasDaSemana.SABADO;
     }
 }

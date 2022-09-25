@@ -16,4 +16,9 @@ export default class Negociacao {
     get volume() {
         return this._quantidade * this._valor;
     }
+    static criaDe(data, quantidade, valor) {
+        const exp = /-/g;
+        const date = new Date(data.replace(exp, ','));
+        return new Negociacao(date, parseInt(quantidade), parseFloat(valor));
+    }
 }
