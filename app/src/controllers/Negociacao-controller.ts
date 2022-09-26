@@ -1,8 +1,8 @@
 import Negociacao from "../models/Negociacao.js";
 import Negociacoes from "../models/Negociacoes.js";
+import { DiasDaSemana } from "../enums/Dias-da-semana.js";
 import NegociacoesView from "../views/Negociacoes-view.js";
 import MensagemView from "../views/Mensagem-view.js";
-import { DiasDaSemana } from "../enums/Dias-da-semana.js";
 
 export default class NegociacaoController {
 
