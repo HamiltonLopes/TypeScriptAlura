@@ -1,3 +1,6 @@
+import inspect from "../decorators/Inspect.js";
+import logarTempoDeExecucao from "../decorators/Logar-tempo-de-execucao.js";
+
 export default abstract class View<T>{
     protected elemento: HTMLElement;
     private escapar: boolean;
@@ -11,14 +14,13 @@ export default abstract class View<T>{
 
     protected abstract template(model: T): string;
 
+    @inspect()
+    @logarTempoDeExecucao(true)
     public update(model: T): void{
-        const t1 = performance.now();
         if(this.escapar) 
             this.elemento.innerHTML = this.template(model).
                 replace(/<script>[\s\S]*?<\/script>/,'');
         else 
             this.elemento.innerHTML = this.template(model);
-        const t2 = performance.now();
-        console.log(`Tempo de execução do método update ${(t2-t1)/1000} segundos.`)
     }
 }
