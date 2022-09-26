@@ -23,6 +23,6 @@ export default class NegociacoesView extends View {
         `;
     }
     formatDate(data) {
-        return new Intl.DateTimeFormat().format(data); //Metodo que retorna a data no formato da localização atual.
+        return new Intl.DateTimeFormat().format(data);
     }
 }

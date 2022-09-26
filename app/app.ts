@@ -4,9 +4,13 @@ import NegociacoesView from "./views/Negociacoes-view.js";
 const controller = new NegociacaoController();
 const form = document.querySelector('.form');
 
-form.addEventListener('submit', (e) => { 
-    e.preventDefault(); 
-    controller.adiciona(); 
-});
+if(form){
+    form.addEventListener('submit', (e) => { 
+        e.preventDefault(); 
+        controller.adiciona(); 
+    });
+}else{
+    throw Error(`Erro, não existe um form nessa aplicação.`)
+}
 
 

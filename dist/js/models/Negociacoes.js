@@ -1,6 +1,6 @@
 export default class Negociacoes {
     constructor() {
-        this.negociacioes = []; // or Array<Negociacao>
+        this.negociacioes = [];
     }
     adiciona(negociacao) {
         this.negociacioes.push(negociacao);

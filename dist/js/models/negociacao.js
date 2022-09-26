@@ -3,7 +3,7 @@ export default class Negociacao {
         this._data = _data;
         this._quantidade = _quantidade;
         this._valor = _valor;
-    } // or using 'public readonly varName:Type' removing gets.
+    }
     get data() {
         return new Date(this._data.getTime());
     }
