@@ -13,8 +13,6 @@ export default abstract class View<T>{
 
     protected abstract template(model: T): string;
 
-    @logarTempoDeExecucao(true)
-    @inspect
     public update(model: T): void{
         this.elemento.innerHTML = this.template(model);
     }
