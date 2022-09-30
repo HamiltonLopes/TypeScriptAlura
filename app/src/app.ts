@@ -1,5 +1,4 @@
 import NegociacaoController from "./controllers/negociacao-controller.js";
-import NegociacoesView from "./views/Negociacoes-view.js";
 
 const controller = new NegociacaoController();
 const form = document.querySelector('.form');
@@ -13,4 +12,12 @@ if(form){
     throw Error(`Erro, não existe um form nessa aplicação.`)
 }
 
+const botaoImporta = document.querySelector('#botao-importa');
 
+if(botaoImporta){
+    botaoImporta.addEventListener('click', () => { 
+        controller.importaDados(); 
+    });
+}else{
+    throw Error(`Erro, não existe um #botao-importa nessa aplicação.`)
+}

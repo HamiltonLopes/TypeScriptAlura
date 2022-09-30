@@ -12,6 +12,7 @@ import MensagemView from "../views/Mensagem-view.js";
 import logarTempoDeExecucao from "../decorators/Logar-tempo-de-execucao.js";
 import inspect from "../decorators/Inspect.js";
 import domInjector from "../decorators/Dom-injector.js";
+import NegociacoesService from "../services/NegociacoesService.js";
 export default class NegociacaoController {
     constructor() {
         this.negociacoes = new Negociacoes();
@@ -42,6 +43,15 @@ export default class NegociacaoController {
     isDiaUtil(data) {
         return data.getDay() > DiasDaSemana.DOMINGO
             && data.getDay() < DiasDaSemana.SABADO;
+    }
+    importaDados() {
+        NegociacoesService.obterNegociacoes().
+            then((negociacoes) => {
+            for (let negociacao of negociacoes) {
+                this.negociacoes.adiciona(negociacao);
+            }
+            this.negociacoesView.update(this.negociacoes);
+        });
     }
 }
 __decorate([
