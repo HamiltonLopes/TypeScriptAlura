@@ -7,6 +7,7 @@ import logarTempoDeExecucao from "../decorators/Logar-tempo-de-execucao.js";
 import inspect from "../decorators/Inspect.js";
 import domInjector from "../decorators/Dom-injector.js";
 import NegociacoesService from "../services/NegociacoesService.js";
+import { imprimir } from "../utils/Imprimir.js";
 
 export default class NegociacaoController {
 
@@ -37,6 +38,7 @@ export default class NegociacaoController {
             return;
         }
         this.negociacoes.adiciona(negociacao);
+        imprimir(negociacao, this.negociacoes);
         this.atualizaView();
         this.limparFormulario();
     }
@@ -60,6 +62,11 @@ export default class NegociacaoController {
 
     public importaDados(): void{
         NegociacoesService.obterNegociacoes().
+        then((negociacoes) => {
+            return negociacoes.filter(negociacao => 
+                !this.negociacoes.lista().some(nego => nego.ehIgual(negociacao))
+            );
+        }).
         then((negociacoes) => {
             for(let negociacao of negociacoes){
                 this.negociacoes.adiciona(negociacao);

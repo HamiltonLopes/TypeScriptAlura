@@ -8,3 +8,4 @@ export default function escapar(target, propertyKey, descriptor) {
         return retorno;
     };
 }
+//# sourceMappingURL=Escapar.js.map

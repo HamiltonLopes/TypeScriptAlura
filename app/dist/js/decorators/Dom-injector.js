@@ -10,3 +10,4 @@ export default function domInjector(seletor) {
         });
     };
 }
+//# sourceMappingURL=Dom-injector.js.map

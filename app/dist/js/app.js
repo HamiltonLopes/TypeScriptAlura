@@ -19,3 +19,4 @@ if (botaoImporta) {
 else {
     throw Error(`Erro, não existe um #botao-importa nessa aplicação.`);
 }
+//# sourceMappingURL=app.js.map
